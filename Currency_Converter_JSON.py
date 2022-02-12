@@ -2,7 +2,7 @@ import json
 import requests
 
 cache = {}
-base_currency = input().lower()
+base_currency = input("What currency do you want to exchange?\n").lower()
 url = f"http://www.floatrates.com/daily/{base_currency}.json"
 data = requests.get(url)
 
@@ -14,10 +14,10 @@ if base_currency != 'usd':
 if base_currency != 'eur':
     cache['eur'] = currencies_json['eur']
 while True:
-    exchange_currency = input().lower()
+    exchange_currency = input("What currency you want to exchange to?\n").lower()
     if exchange_currency == "":
         break
-    money = float(input())
+    money = float(input("How much {} do you want to exchange? If you want to end, just press enter\n".format(base_currency)))
 
     print("Checking the cache...")
     if exchange_currency in cache:
